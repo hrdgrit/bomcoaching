@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bomcoaching.org/sitemap.xml
