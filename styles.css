@@ -181,47 +181,49 @@ a {
   color: var(--text);
 }
 
-/* ─── Hero (full bleed) ─── */
+/* ─── Hero (2컬럼: 사진 왼쪽 / 텍스트 오른쪽) ─── */
 
 .hero {
-  position: relative;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
   min-height: 92vh;
-  display: flex;
-  align-items: flex-end;
+  background: #1a0e08;
   overflow: hidden;
-  background: #2a1a15;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  background: #1a0e08;
+}
+
+.hero-photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 65%, #1a0e08 100%);
+  pointer-events: none;
 }
 
 .hero-bg-img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: cover;
-  object-position: center top;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(20, 10, 8, 0.12) 0%, rgba(20, 10, 8, 0.68) 100%),
-    linear-gradient(to right, rgba(20, 10, 8, 0.0) 0%, rgba(20, 10, 8, 0.48) 100%);
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .hero-inner {
-  position: relative;
-  z-index: 2;
-  width: min(calc(100% - 48px), var(--container));
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-  padding: 80px 0 96px;
+  justify-content: flex-end;
+  padding: 80px 56px 96px 40px;
   color: #fff;
+  width: auto;
+  margin: 0;
+  align-items: flex-start;
+  text-align: left;
 }
 
 /* ─── Typography ─── */
@@ -271,7 +273,7 @@ h1 {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 12px;
   margin-top: 32px;
 }
@@ -308,7 +310,7 @@ h1 {
 .hero-points {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: flex-start;
   gap: 8px;
   padding: 0;
   margin: 24px 0 0;
@@ -630,7 +632,27 @@ h1 {
 
 @media (max-width: 980px) {
   .hero {
-    min-height: 85vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 60vh auto;
+    min-height: auto;
+  }
+
+  .hero-photo-wrap {
+    min-height: 60vh;
+  }
+
+  .hero-inner {
+    align-items: center;
+    text-align: center;
+    padding: 48px 32px 64px;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-points {
+    justify-content: center;
   }
 
   .statement,
