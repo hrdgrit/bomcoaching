@@ -197,13 +197,6 @@ a {
   background: #1a0e08;
 }
 
-.hero-photo-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, transparent 65%, #1a0e08 100%);
-  pointer-events: none;
-}
 
 .hero-bg-img {
   display: block;
