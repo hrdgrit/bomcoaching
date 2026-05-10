@@ -468,6 +468,16 @@ h1 {
   background: var(--bg-soft);
 }
 
+.proof-link {
+  display: block;
+  color: inherit;
+  transition: opacity 160ms;
+}
+
+.proof-link:hover {
+  opacity: 0.88;
+}
+
 .proof-copy {
   padding: 22px;
 }
