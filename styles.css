@@ -669,6 +669,7 @@ h1 {
 /* ─── Responsive ─── */
 
 @media (max-width: 980px) {
+  /* 태블릿: 사진 위에 텍스트 오버레이 (768px 이상에서만) */
   .hero {
     min-height: 100svh;
     align-items: flex-end;
@@ -723,6 +724,54 @@ h1 {
   }
 }
 
+@media (max-width: 768px) {
+  /* Hero: 사진 위 / 텍스트 아래 세로 스택 */
+  .hero {
+    flex-direction: column;
+    min-height: auto;
+    background: var(--bg);
+  }
+
+  .hero-photo-wrap {
+    position: relative;
+    width: 100%;
+    height: 64vw;
+    min-height: 220px;
+    max-height: 360px;
+    background: #b5c3ce;
+  }
+
+  .hero-bg-img {
+    object-position: left top;
+  }
+
+  .hero-inner {
+    position: relative;
+    width: 100%;
+    margin-left: 0;
+    padding: 32px 24px 52px;
+    background: none;
+    align-items: flex-start;
+    text-align: left;
+    color: var(--text);
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-points {
+    justify-content: flex-start;
+  }
+
+  .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 680px) {
   .page-shell {
     width: min(calc(100% - 24px), var(--container));
@@ -743,30 +792,13 @@ h1 {
     padding: 8px 10px;
   }
 
-  .hero {
-    min-height: 100svh;
-  }
-
   .hero-inner {
-    align-items: center;
-    text-align: center;
-    padding: 60px 20px 72px;
-    width: 100%;
+    padding: 28px 24px 48px;
   }
 
   .hero-actions {
-    justify-content: center;
     flex-direction: column;
     align-items: stretch;
-  }
-
-  .hero-points {
-    justify-content: center;
-  }
-
-  .button {
-    width: 100%;
-    justify-content: center;
   }
 
   .section {
