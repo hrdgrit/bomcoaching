@@ -188,7 +188,7 @@ a {
   display: flex;
   align-items: stretch;
   min-height: 92vh;
-  background: #C2CDD1;
+  background: #b5c3ce;
   overflow: hidden;
 }
 
@@ -196,15 +196,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: #C2CDD1;
-}
-
-.hero-photo-wrap::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, transparent 42%, #C2CDD1 57%);
-  pointer-events: none;
+  background: #b5c3ce;
 }
 
 .hero-bg-img {
