@@ -232,7 +232,10 @@ a {
 }
 
 .hero-inner .eyebrow {
-  color: var(--accent-deep);
+  color: #4a3f3c;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: none;
 }
 
 h1,
@@ -253,6 +256,7 @@ h1 {
 
 .hero-inner h1 {
   max-width: 640px;
+  color: var(--accent-deep);
 }
 
 .hero-lead {
