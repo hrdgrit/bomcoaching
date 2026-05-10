@@ -734,9 +734,7 @@ h1 {
     background: #b5c3ce;
   }
 
-  /* 사진: 44% 너비, 텍스트 높이에 맞춰 늘어남
-   * background-size: 100% auto → 가로 꽉 채움, 옆면 잘림 없음
-   * 사진 배경색=#b5c3ce → 이미지 아래 빈 공간도 자연스럽게 이어짐 */
+  /* 사진: 58% 크게, 텍스트 높이에 맞춰 늘어남 */
   .hero-photo-wrap {
     position: relative;
     top: auto;
@@ -744,7 +742,7 @@ h1 {
     bottom: auto;
     left: auto;
     flex: none;
-    width: 44%;
+    width: 58%;
     align-self: stretch;
     overflow: hidden;
     z-index: 0;
@@ -759,16 +757,16 @@ h1 {
     display: none;
   }
 
-  /* 텍스트: 오른쪽 56%, 위에서부터 */
+  /* 텍스트: 오른쪽 42%, 소타이틀·H1·본문만 */
   .hero-inner {
     flex: 1;
     position: relative;
     z-index: 1;
     width: auto;
     margin-left: 0;
-    padding: 20px 12px 24px 10px;
+    padding: 16px 10px 20px 8px;
     align-items: flex-start;
-    align-self: auto;
+    align-self: center;
     text-align: left;
     justify-content: flex-start;
     background-image: none;
@@ -782,38 +780,22 @@ h1 {
   }
 
   .hero-inner h1 {
-    font-size: 19px;
-    line-height: 1.35;
+    font-size: 17px;
+    line-height: 1.4;
     word-break: keep-all;
   }
 
   .hero-lead {
     font-size: 11px;
-    margin-top: 10px;
+    margin-top: 8px;
     line-height: 1.65;
     word-break: keep-all;
   }
 
-  /* 버튼·태그 모바일에서 표시 */
-  .hero-actions {
-    display: flex;
-    margin-top: 14px;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .hero-actions .button {
-    font-size: 11px;
-    padding: 9px 13px;
-  }
-
+  /* 버튼·태그 모두 숨김 */
+  .hero-actions,
   .hero-points {
-    display: flex;
-    margin-top: 10px;
-    gap: 5px;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: none;
   }
 }
 
