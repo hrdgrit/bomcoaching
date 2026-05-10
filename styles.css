@@ -762,21 +762,9 @@ h1 {
     line-height: 1.6;
   }
 
-  .hero-actions {
-    margin-top: 14px;
-    gap: 6px;
-    justify-content: flex-start;
-  }
-
-  .hero-actions .button {
-    font-size: 12px;
-    padding: 9px 14px;
-  }
-
+  .hero-actions,
   .hero-points {
-    margin-top: 12px;
-    gap: 8px;
-    justify-content: flex-start;
+    display: none;
   }
 }
 
