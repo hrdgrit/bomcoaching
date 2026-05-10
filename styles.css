@@ -187,14 +187,14 @@ a {
   display: grid;
   grid-template-columns: 55fr 45fr;
   min-height: 92vh;
-  background: #c1c5c6;
+  background: #b6c3cf;
   overflow: hidden;
 }
 
 .hero-photo-wrap {
   position: relative;
   overflow: hidden;
-  background: #c1c5c6;
+  background: #b6c3cf;
 }
 
 
