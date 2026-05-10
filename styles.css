@@ -725,29 +725,29 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 사진 왼쪽 / 텍스트 오른쪽 — 데스크탑과 동일 구조 */
+  /* Hero: 화면 꽉 차게, 사진 왼쪽 크게 / 텍스트 오른쪽 */
   .hero {
     flex-direction: row;
-    min-height: auto;
+    height: 100svh;
+    min-height: 100svh;
     max-height: none;
-    align-items: flex-start;
+    align-items: stretch;
     background: #b5c3ce;
   }
 
-  /* 사진: 58% 크게, 텍스트 높이에 맞춰 늘어남 */
+  /* 사진: 60% — cover+100svh로 인물 크게, 어깨 안 잘림 */
   .hero-photo-wrap {
     position: relative;
     top: auto;
     right: auto;
     bottom: auto;
     left: auto;
-    flex: none;
-    width: 58%;
-    align-self: stretch;
+    flex: 0 0 60%;
+    width: 60%;
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: 100% auto;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
     background-color: #b5c3ce;
@@ -757,42 +757,42 @@ h1 {
     display: none;
   }
 
-  /* 텍스트: 오른쪽 42%, 소타이틀·H1·본문만 */
+  /* 텍스트: 오른쪽 40%, 세로 중앙 */
   .hero-inner {
     flex: 1;
     position: relative;
     z-index: 1;
     width: auto;
     margin-left: 0;
-    padding: 16px 10px 20px 8px;
+    padding: 0 10px 0 8px;
     align-items: flex-start;
     align-self: center;
     text-align: left;
-    justify-content: flex-start;
+    justify-content: center;
     background-image: none;
     background-color: transparent;
   }
 
   .hero-inner .eyebrow {
-    font-size: 11px;
+    font-size: 10px;
     margin-bottom: 6px;
     word-break: keep-all;
+    letter-spacing: 0.04em;
   }
 
   .hero-inner h1 {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.4;
     word-break: keep-all;
   }
 
   .hero-lead {
-    font-size: 11px;
+    font-size: 10px;
     margin-top: 8px;
     line-height: 1.65;
     word-break: keep-all;
   }
 
-  /* 버튼·태그 모두 숨김 */
   .hero-actions,
   .hero-points {
     display: none;
