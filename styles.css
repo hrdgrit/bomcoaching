@@ -745,8 +745,9 @@ h1 {
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: cover;
+    background-size: 100% auto;
     background-position: top center;
+    background-repeat: no-repeat;
   }
 
   /* img 태그 숨김 — background-image 사용 */
@@ -754,7 +755,7 @@ h1 {
     display: none;
   }
 
-  /* 텍스트: 오른쪽 하단, 그라디언트 없이 */
+  /* 텍스트: 980px 그라디언트 완전 초기화, 오른쪽 하단 */
   .hero-inner {
     position: relative;
     z-index: 1;
@@ -763,9 +764,11 @@ h1 {
     margin-right: 0;
     padding: 0 16px 52px 12px;
     align-items: flex-start;
+    align-self: flex-end;
     text-align: left;
     justify-content: flex-end;
-    background: none;
+    background-image: none;
+    background-color: transparent;
   }
 
   .hero-inner .eyebrow {
