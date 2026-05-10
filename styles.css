@@ -725,27 +725,29 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 사진 전체 배경 — 경계선 없음, 어깨 잘림 없음 */
+  /* Hero: 사진 위 / 텍스트 아래 세로 스택 — 절대 안 겹침 */
   .hero {
-    min-height: 100svh;
+    flex-direction: column;
+    min-height: auto;
     max-height: none;
-    align-items: flex-end;
+    align-items: stretch;
     background: #b5c3ce;
   }
 
-  /* 사진을 전체 배경으로 (데스크탑과 동일 구조) */
+  /* 사진: 전체 너비, 어깨~손 높이 (90vw ≈ 338px) */
   .hero-photo-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: auto;
-    height: auto;
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    flex: none;
+    width: 100%;
+    height: 90vw;
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: 100% auto;
+    background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
   }
@@ -755,38 +757,39 @@ h1 {
     display: none;
   }
 
-  /* 텍스트: 980px 그라디언트 완전 초기화, 오른쪽 하단 */
+  /* 텍스트: 사진 아래, 전체 너비 */
   .hero-inner {
     position: relative;
     z-index: 1;
-    width: 58%;
-    margin-left: auto;
+    flex: none;
+    width: 100%;
+    margin-left: 0;
     margin-right: 0;
-    padding: 0 16px 52px 12px;
+    padding: 20px 24px 36px;
     align-items: flex-start;
-    align-self: flex-end;
+    align-self: auto;
     text-align: left;
-    justify-content: flex-end;
+    justify-content: flex-start;
     background-image: none;
     background-color: transparent;
   }
 
   .hero-inner .eyebrow {
-    font-size: 10px;
+    font-size: 11px;
     margin-bottom: 6px;
     word-break: keep-all;
   }
 
   .hero-inner h1 {
-    font-size: 15px;
+    font-size: 22px;
     line-height: 1.35;
     word-break: keep-all;
   }
 
   .hero-lead {
-    font-size: 11px;
-    margin-top: 8px;
-    line-height: 1.6;
+    font-size: 13px;
+    margin-top: 10px;
+    line-height: 1.7;
     word-break: keep-all;
   }
 
