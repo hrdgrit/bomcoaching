@@ -184,37 +184,38 @@ a {
 /* ─── Hero (2컬럼: 사진 왼쪽 / 텍스트 오른쪽) ─── */
 
 .hero {
-  display: grid;
-  grid-template-columns: 55fr 45fr;
+  position: relative;
+  display: flex;
+  align-items: stretch;
   min-height: 92vh;
-  background: #b6c3cf;
+  background: #c1c5c6;
   overflow: hidden;
 }
 
 .hero-photo-wrap {
-  position: relative;
-  overflow: hidden;
-  background: #b6c3cf;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
 }
-
 
 .hero-bg-img {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: none;
   object-fit: cover;
-  object-position: center top;
+  object-position: left center;
 }
 
 .hero-inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 80px 56px 96px 40px;
+  padding: 80px 56px 96px 48px;
   color: var(--text);
-  width: auto;
-  margin: 0;
+  width: 45%;
+  margin-left: auto;
   align-items: flex-start;
   text-align: left;
 }
@@ -668,19 +669,17 @@ h1 {
 
 @media (max-width: 980px) {
   .hero {
-    grid-template-columns: 1fr;
-    grid-template-rows: 60vh auto;
-    min-height: auto;
-  }
-
-  .hero-photo-wrap {
-    min-height: 60vh;
+    min-height: 100svh;
+    align-items: flex-end;
   }
 
   .hero-inner {
+    width: 100%;
+    margin-left: 0;
     align-items: center;
     text-align: center;
     padding: 48px 32px 64px;
+    background: linear-gradient(to top, rgba(193,197,198,0.85) 60%, transparent);
   }
 
   .hero-actions {
@@ -744,15 +743,14 @@ h1 {
   }
 
   .hero {
-    min-height: 88vh;
-    align-items: center;
+    min-height: 100svh;
   }
 
   .hero-inner {
     align-items: center;
     text-align: center;
-    padding: 60px 0 72px;
-    width: min(calc(100% - 40px), var(--container));
+    padding: 60px 20px 72px;
+    width: 100%;
   }
 
   .hero-actions {
