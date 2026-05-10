@@ -199,6 +199,14 @@ a {
   background: #C2CDD1;
 }
 
+.hero-photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 42%, #C2CDD1 57%);
+  pointer-events: none;
+}
+
 .hero-bg-img {
   display: block;
   width: 100%;
