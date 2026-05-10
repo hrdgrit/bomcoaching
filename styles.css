@@ -725,25 +725,23 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 화면 꽉 차게 */
+  /* Hero: 사진 전체 배경 — 경계선 없음, 어깨 잘림 없음 */
   .hero {
-    height: 100svh;
     min-height: 100svh;
     max-height: none;
-    align-items: stretch;
+    align-items: flex-end;
     background: #b5c3ce;
   }
 
-  /* 사진 영역: 50%로 넓혀서 어깨까지 다 담기 */
+  /* 사진을 전체 배경으로 (데스크탑과 동일 구조) */
   .hero-photo-wrap {
-    position: relative;
-    top: auto;
-    right: auto;
-    bottom: auto;
-    left: auto;
-    flex: 0 0 50%;
-    width: 50%;
-    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
@@ -751,22 +749,22 @@ h1 {
     background-position: top center;
   }
 
-  /* img 태그는 모바일에서 숨김 (background-image 사용) */
+  /* img 태그 숨김 — background-image 사용 */
   .hero-bg-img {
     display: none;
   }
 
+  /* 텍스트: 오른쪽 하단, 그라디언트 없이 */
   .hero-inner {
-    flex: 1;
     position: relative;
     z-index: 1;
-    width: auto;
-    margin-left: 0;
-    padding: 0 8px 0 8px;
+    width: 58%;
+    margin-left: auto;
+    margin-right: 0;
+    padding: 0 16px 52px 12px;
     align-items: flex-start;
-    align-self: center;
     text-align: left;
-    justify-content: center;
+    justify-content: flex-end;
     background: none;
   }
 
