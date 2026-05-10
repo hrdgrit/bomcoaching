@@ -725,16 +725,22 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 사진 위 / 텍스트 아래 세로 스택 — 절대 안 겹침 */
+  /* Hero: 사진 왼쪽 / 텍스트 오른쪽 */
   .hero {
-    flex-direction: column;
+    flex-direction: row;
     min-height: auto;
     max-height: none;
-    align-items: stretch;
+    align-items: flex-start;
     background: #b5c3ce;
+    padding: 0;
   }
 
-  /* 사진: 전체 너비, 어깨~손 높이 (90vw ≈ 338px) */
+  /*
+   * 사진: 52% 너비, 높이 50vw
+   * background-size: 100% auto → 가로를 꽉 채워 스케일 → 옆면 잘림 없음
+   * 세로는 컨테이너(50vw)가 클립 → 손 바로 아래까지만 노출
+   * margin-left: 8px → 살짝 왼쪽
+   */
   .hero-photo-wrap {
     position: relative;
     top: auto;
@@ -742,54 +748,54 @@ h1 {
     bottom: auto;
     left: auto;
     flex: none;
-    width: 100%;
-    height: 90vw;
+    width: 52%;
+    height: 50vw;
+    margin-left: 8px;
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: cover;
+    background-size: 100% auto;
     background-position: top center;
     background-repeat: no-repeat;
   }
 
-  /* img 태그 숨김 — background-image 사용 */
   .hero-bg-img {
     display: none;
   }
 
-  /* 텍스트: 사진 아래, 전체 너비 */
+  /* 텍스트: 오른쪽, 세로 중앙 */
   .hero-inner {
     position: relative;
     z-index: 1;
-    flex: none;
-    width: 100%;
+    flex: 1;
+    width: auto;
     margin-left: 0;
     margin-right: 0;
-    padding: 20px 24px 36px;
+    padding: 12px 12px 12px 10px;
     align-items: flex-start;
-    align-self: auto;
+    align-self: center;
     text-align: left;
-    justify-content: flex-start;
+    justify-content: center;
     background-image: none;
     background-color: transparent;
   }
 
   .hero-inner .eyebrow {
-    font-size: 11px;
-    margin-bottom: 6px;
+    font-size: 10px;
+    margin-bottom: 5px;
     word-break: keep-all;
   }
 
   .hero-inner h1 {
-    font-size: 22px;
-    line-height: 1.35;
+    font-size: 15px;
+    line-height: 1.4;
     word-break: keep-all;
   }
 
   .hero-lead {
-    font-size: 13px;
-    margin-top: 10px;
-    line-height: 1.7;
+    font-size: 11px;
+    margin-top: 8px;
+    line-height: 1.65;
     word-break: keep-all;
   }
 
