@@ -725,24 +725,39 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: PC와 동일한 좌우 레이아웃 유지, 폰트/여백만 축소 */
+  /* Hero: 좌우 나란히 — photo-wrap을 flex 흐름 안으로 */
   .hero {
     min-height: 100svh;
     align-items: stretch;
   }
 
+  /* absolute 해제 → flex 아이템으로 전환 */
   .hero-photo-wrap {
+    position: relative;
+    inset: auto;
+    width: 45%;
+    flex-shrink: 0;
+  }
+
+  /* img는 photo-wrap 내부를 꽉 채우도록 absolute */
+  .hero-bg-img {
     position: absolute;
     inset: 0;
-    width: 45%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
   }
 
   .hero-inner {
+    position: relative;
+    z-index: 1;
     width: 55%;
-    margin-left: auto;
-    padding: 32px 12px 40px 12px;
+    margin-left: 0;
+    padding: 24px 12px 36px 14px;
     align-items: flex-start;
     text-align: left;
+    justify-content: center;
     background: none;
   }
 
