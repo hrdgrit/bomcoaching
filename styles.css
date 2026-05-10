@@ -725,33 +725,39 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 좌우 나란히, 사진 전체 노출 */
+  /* Hero: 좌우 나란히, 320~360px 고정 높이 */
   .hero {
-    min-height: auto;
-    align-items: flex-start;
+    height: 340px;
+    min-height: 320px;
+    max-height: 360px;
+    align-items: stretch;
     background: #b5c3ce;
   }
 
-  /* absolute 완전 해제 → 자연 흐름 flex 아이템 */
+  /* 사진 영역: 42%, 섹션 높이에 꽉 차게 */
   .hero-photo-wrap {
     position: relative;
     top: auto;
     right: auto;
     bottom: auto;
     left: auto;
-    flex: 0 0 45%;
-    width: 45%;
-    height: auto;
-    overflow: visible;
+    flex: 0 0 42%;
+    width: 42%;
+    height: 100%;
+    overflow: hidden;
     z-index: 0;
   }
 
-  /* 사진 비율 그대로, 전체 노출 */
+  /* 얼굴~허리 노출 */
   .hero-bg-img {
-    position: static;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
-    height: auto;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     object-position: top center;
   }
 
@@ -761,10 +767,11 @@ h1 {
     z-index: 1;
     width: auto;
     margin-left: 0;
-    padding: 20px 8px 32px 4px;
+    padding: 0 8px 0 10px;
     align-items: flex-start;
+    align-self: center;
     text-align: left;
-    justify-content: flex-start;
+    justify-content: center;
     background: none;
   }
 
