@@ -725,11 +725,11 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* Hero: 좌우 나란히, 320~360px 고정 높이 */
+  /* Hero: 화면 꽉 차게 */
   .hero {
-    height: 340px;
-    min-height: 320px;
-    max-height: 360px;
+    height: 100svh;
+    min-height: 100svh;
+    max-height: none;
     align-items: stretch;
     background: #b5c3ce;
   }
