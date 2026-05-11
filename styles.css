@@ -216,7 +216,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 80px 56px 96px 48px;
+  padding: 80px 56px 96px 24px;
   color: var(--text);
   flex: 1;
   min-width: 0;
