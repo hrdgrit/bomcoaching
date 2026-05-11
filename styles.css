@@ -648,6 +648,10 @@ h1 {
   line-height: 1.8;
 }
 
+.contact-form-btn {
+  margin-top: 28px;
+}
+
 .contact-list {
   display: grid;
   gap: 12px;
