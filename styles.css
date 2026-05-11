@@ -200,6 +200,18 @@ a {
   background: #b5c3ce;
 }
 
+.hero-photo-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 120px;
+  background: linear-gradient(to right, transparent, #b5c3ce);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .hero-bg-img {
   display: block;
   width: 100%;
@@ -683,6 +695,10 @@ h1 {
     position: absolute;
     inset: 0;
     flex: none;
+  }
+
+  .hero-photo-wrap::after {
+    display: none;
   }
 
   .hero-inner {
