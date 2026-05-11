@@ -188,7 +188,7 @@ a {
   display: flex;
   align-items: stretch;
   min-height: 92vh;
-  background: #b5c3ce;
+  background: var(--bg);
   overflow: hidden;
 }
 
@@ -197,7 +197,7 @@ a {
   flex: 0 0 55%;
   overflow: hidden;
   z-index: 0;
-  background: #b5c3ce;
+  background: var(--bg);
 }
 
 .hero-bg-img {
@@ -206,6 +206,8 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transform: scale(1.5);
+  transform-origin: top center;
 }
 
 .hero-inner {
@@ -689,7 +691,7 @@ h1 {
     align-items: center;
     text-align: center;
     padding: 48px 32px 64px;
-    background: linear-gradient(to top, rgba(193,197,198,0.85) 60%, transparent);
+    background: linear-gradient(to top, rgba(255,253,249,0.92) 60%, transparent);
   }
 
   .hero-actions {
@@ -740,7 +742,7 @@ h1 {
     min-height: 100svh;
     max-height: none;
     align-items: stretch;
-    background: #b5c3ce;
+    background: var(--bg);
   }
 
   /* 사진: 60% — cover+100svh로 인물 크게, 어깨 안 잘림 */
@@ -755,10 +757,10 @@ h1 {
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: cover;
+    background-size: 150%;
     background-position: top center;
     background-repeat: no-repeat;
-    background-color: #b5c3ce;
+    background-color: var(--bg);
   }
 
   .hero-bg-img {
@@ -778,7 +780,7 @@ h1 {
     text-align: left;
     justify-content: center;
     background-image: none;
-    background-color: #b5c3ce;
+    background-color: var(--bg);
   }
 
   .hero-inner .eyebrow {
