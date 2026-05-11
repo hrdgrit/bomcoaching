@@ -188,7 +188,7 @@ a {
   display: flex;
   align-items: stretch;
   min-height: 92vh;
-  background: var(--bg);
+  background: #b5c3ce;
   overflow: hidden;
 }
 
@@ -197,7 +197,7 @@ a {
   flex: 0 0 55%;
   overflow: hidden;
   z-index: 0;
-  background: var(--bg);
+  background: #b5c3ce;
 }
 
 .hero-bg-img {
@@ -222,6 +222,7 @@ a {
   min-width: 0;
   align-items: flex-start;
   text-align: left;
+  background: #b5c3ce;
 }
 
 /* ─── Typography ─── */
@@ -691,7 +692,7 @@ h1 {
     align-items: center;
     text-align: center;
     padding: 48px 32px 64px;
-    background: linear-gradient(to top, rgba(255,253,249,0.92) 60%, transparent);
+    background: linear-gradient(to top, rgba(193,197,198,0.85) 60%, transparent);
   }
 
   .hero-actions {
@@ -742,7 +743,7 @@ h1 {
     min-height: 100svh;
     max-height: none;
     align-items: stretch;
-    background: var(--bg);
+    background: #b5c3ce;
   }
 
   /* 사진: 60% — cover+100svh로 인물 크게, 어깨 안 잘림 */
@@ -760,7 +761,7 @@ h1 {
     background-size: 150%;
     background-position: top center;
     background-repeat: no-repeat;
-    background-color: var(--bg);
+    background-color: #b5c3ce;
   }
 
   .hero-bg-img {
@@ -780,7 +781,7 @@ h1 {
     text-align: left;
     justify-content: center;
     background-image: none;
-    background-color: var(--bg);
+    background-color: #b5c3ce;
   }
 
   .hero-inner .eyebrow {
