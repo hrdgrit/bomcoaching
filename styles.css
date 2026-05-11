@@ -774,8 +774,8 @@ h1 {
     overflow: hidden;
     z-index: 0;
     background-image: url(assets/profile2.jpg);
-    background-size: 150%;
-    background-position: top center;
+    background-size: cover;
+    background-position: center top;
     background-repeat: no-repeat;
     background-color: #b5c3ce;
   }
