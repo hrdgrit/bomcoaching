@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>후기 관리 | 봄 코칭심리연구소</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --bg: #fffdf9;
+      --surface: rgba(255,255,255,0.9);
+      --line: rgba(58,48,43,0.12);
+      --text: rgba(30,24,20,0.94);
+      --muted: #6c625c;
+      --accent: #c47d6e;
+      --accent-deep: #9b5a4e;
+      --accent-wash: #fdf0ed;
+      --sans: "Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+      --serif: 'Paperlogy','Pretendard',sans-serif;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ─── Login ─── */
+    .login-gate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login-card {
+      width: 100%;
+      max-width: 360px;
+      padding: 40px 32px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: var(--surface);
+    }
+    .login-card h1 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+    .login-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 0 0 24px;
+    }
+    .login-card input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.96rem;
+      outline: none;
+      margin-bottom: 12px;
+      transition: border-color 160ms;
+    }
+    .login-card input:focus { border-color: var(--accent); }
+    .login-error {
+      color: var(--accent-deep);
+      font-size: 0.88rem;
+      margin: 8px 0 0;
+    }
+
+    /* ─── Admin panel ─── */
+    .admin-wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+    .admin-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+    .admin-header h1 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    /* ─── Pending cards ─── */
+    .pending-list { display: grid; gap: 16px; }
+    .pending-card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+    .pending-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .pending-name { font-weight: 700; font-size: 15px; font-family: var(--serif); }
+    .pending-type {
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: var(--accent-wash);
+      color: var(--accent-deep);
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .pending-date { margin-left: auto; color: var(--muted); font-size: 11px; }
+    .pending-content { color: var(--muted); font-size: 0.93rem; margin: 0 0 18px; line-height: 1.75; }
+    .pending-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 140ms, background 140ms;
+    }
+    .btn:hover { opacity: 0.82; }
+    .btn-approve { background: var(--accent-deep); color: #fff; }
+    .btn-delete { background: transparent; border-color: var(--line); color: var(--muted); }
+    .btn-delete.confirm { border-color: var(--accent-deep); color: var(--accent-deep); }
+
+    .btn-full {
+      width: 100%;
+      padding: 13px;
+      border-radius: 12px;
+      border: none;
+      background: var(--accent-deep);
+      color: #fff;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 140ms;
+    }
+    .btn-full:hover { opacity: 0.88; }
+    .btn-full:disabled { opacity: 0.55; cursor: not-allowed; }
+
+    .btn-logout {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: 13px;
+      cursor: pointer;
+      transition: opacity 140ms;
+    }
+    .btn-logout:hover { opacity: 0.7; }
+
+    .empty-state {
+      padding: 48px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- 로그인 화면 -->
+  <div class="login-gate" id="login-gate">
+    <div class="login-card">
+      <h1>후기 관리</h1>
+      <p>봄 코칭심리연구소 관리자 전용 페이지입니다.</p>
+      <input type="password" id="admin-pw" placeholder="관리자 비밀번호" autocomplete="current-password">
+      <button class="btn-full" id="login-btn">로그인</button>
+      <p class="login-error hidden" id="login-error">비밀번호가 올바르지 않습니다.</p>
+    </div>
+  </div>
+
+  <!-- 관리자 패널 -->
+  <div class="admin-wrap hidden" id="admin-panel">
+    <div class="admin-header">
+      <h1>대기 중인 후기</h1>
+      <button class="btn-logout" id="logout-btn">로그아웃</button>
+    </div>
+    <div class="pending-list" id="pending-list">
+      <div class="empty-state">불러오는 중...</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+  (function () {
+    var SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    var SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+    var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    var adminPw = '';
+    var deleteTimers = {};
+
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatDate(iso) {
+      var d = new Date(iso);
+      return d.getFullYear() + '.'
+        + String(d.getMonth() + 1).padStart(2, '0') + '.'
+        + String(d.getDate()).padStart(2, '0');
+    }
+
+    // ─── 로그인 ───
+    document.getElementById('login-btn').addEventListener('click', doLogin);
+    document.getElementById('admin-pw').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') doLogin();
+    });
+
+    async function doLogin() {
+      var pw = document.getElementById('admin-pw').value;
+      var btn = document.getElementById('login-btn');
+      var errEl = document.getElementById('login-error');
+      errEl.classList.add('hidden');
+      btn.textContent = '확인 중...';
+      btn.disabled = true;
+
+      var res = await sb.rpc('get_pending_reviews', { p_password: pw });
+
+      if (res.error) {
+        errEl.classList.remove('hidden');
+        btn.textContent = '로그인';
+        btn.disabled = false;
+        return;
+      }
+
+      adminPw = pw;
+      document.getElementById('login-gate').classList.add('hidden');
+      document.getElementById('admin-panel').classList.remove('hidden');
+      renderList(res.data || []);
+    }
+
+    // ─── 로그아웃 ───
+    document.getElementById('logout-btn').addEventListener('click', function () {
+      adminPw = '';
+      document.getElementById('admin-panel').classList.add('hidden');
+      document.getElementById('login-gate').classList.remove('hidden');
+      document.getElementById('admin-pw').value = '';
+      document.getElementById('login-btn').textContent = '로그인';
+      document.getElementById('login-btn').disabled = false;
+    });
+
+    // ─── 목록 렌더링 ───
+    function renderList(reviews) {
+      var list = document.getElementById('pending-list');
+      if (!reviews.length) {
+        list.innerHTML = '<div class="empty-state">대기 중인 후기가 없습니다.</div>';
+        return;
+      }
+      list.innerHTML = reviews.map(function (r) {
+        return '<div class="pending-card" data-id="' + r.id + '">'
+          + '<div class="pending-meta">'
+          + '<span class="pending-name">' + escHtml(r.name) + '</span>'
+          + '<span class="pending-type">' + escHtml(r.coaching_type) + '</span>'
+          + '<span class="pending-date">' + formatDate(r.created_at) + '</span>'
+          + '</div>'
+          + '<p class="pending-content">' + escHtml(r.content) + '</p>'
+          + '<div class="pending-actions">'
+          + '<button class="btn btn-approve" data-id="' + r.id + '" onclick="approveReview(this)">승인</button>'
+          + '<button class="btn btn-delete" data-id="' + r.id + '" onclick="requestDelete(this)">삭제</button>'
+          + '</div>'
+          + '</div>';
+      }).join('');
+    }
+
+    // ─── 승인 ───
+    window.approveReview = async function (btn) {
+      var id = btn.dataset.id;
+      btn.disabled = true;
+      btn.textContent = '처리 중...';
+      var res = await sb.rpc('approve_review', { p_id: id, p_password: adminPw });
+      if (!res.error) removeCard(id);
+      else { btn.disabled = false; btn.textContent = '승인'; }
+    };
+
+    // ─── 삭제 (두 번 클릭 확인) ───
+    window.requestDelete = function (btn) {
+      var id = btn.dataset.id;
+      if (deleteTimers[id]) {
+        // 두 번째 클릭 - 실제 삭제
+        clearTimeout(deleteTimers[id]);
+        delete deleteTimers[id];
+        doDelete(id, btn);
+        return;
+      }
+      btn.textContent = '정말 삭제?';
+      btn.classList.add('confirm');
+      deleteTimers[id] = setTimeout(function () {
+        btn.textContent = '삭제';
+        btn.classList.remove('confirm');
+        delete deleteTimers[id];
+      }, 3000);
+    };
+
+    async function doDelete(id, btn) {
+      btn.disabled = true;
+      btn.textContent = '삭제 중...';
+      var res = await sb.rpc('delete_review', { p_id: id, p_password: adminPw });
+      if (!res.error) removeCard(id);
+      else { btn.disabled = false; btn.textContent = '삭제'; }
+    }
+
+    function removeCard(id) {
+      var card = document.querySelector('[data-id="' + id + '"].pending-card');
+      if (card) card.remove();
+      if (!document.querySelector('.pending-card')) {
+        document.getElementById('pending-list').innerHTML =
+          '<div class="empty-state">대기 중인 후기가 없습니다.</div>';
+      }
+    }
+  })();
+  </script>
+</body>
+</html>

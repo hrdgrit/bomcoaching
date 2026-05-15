@@ -59,6 +59,7 @@
       <nav class="site-nav">
         <a href="#programs">프로그램</a>
         <a href="#proof">활동 이력</a>
+        <a href="#reviews">후기</a>
         <a href="#profile">프로필</a>
         <a class="nav-cta" href="#contact">문의</a>
       </nav>
@@ -251,6 +252,44 @@
         </div>
       </section>
 
+      <section class="section reviews-section" id="reviews">
+        <div class="section-heading">
+          <p class="section-label">Reviews</p>
+          <h2>코칭과 함께한 이야기</h2>
+          <p>실제 코칭 고객분들의 경험을 담았습니다.</p>
+        </div>
+
+        <div class="reviews-grid" id="reviews-list">
+          <p class="reviews-empty">후기를 불러오는 중...</p>
+        </div>
+
+        <div class="review-form-wrap">
+          <h3>후기 남기기</h3>
+          <form id="review-form" novalidate>
+            <div class="form-group">
+              <label for="review-name">성함</label>
+              <input type="text" id="review-name" placeholder="성함을 입력해 주세요" required maxlength="50">
+            </div>
+            <div class="form-group">
+              <label for="review-type">코칭 유형</label>
+              <select id="review-type" required>
+                <option value="">선택해 주세요</option>
+                <option value="라이프 코칭">라이프 코칭</option>
+                <option value="비즈니스 코칭">비즈니스 코칭</option>
+                <option value="커리어 코칭">커리어 코칭</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="review-content">후기 내용</label>
+              <textarea id="review-content" rows="5" placeholder="코칭 경험을 자유롭게 작성해 주세요" required maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="button primary" id="submit-btn">후기 남기기</button>
+            <p class="form-notice hidden" id="form-success">소중한 후기 감사합니다. 검토 후 게시됩니다.</p>
+            <p class="form-notice form-notice--error hidden" id="form-error">제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.</p>
+          </form>
+        </div>
+      </section>
+
       <section class="section contact-section" id="contact">
         <div class="contact-card">
           <div class="contact-copy">
@@ -282,5 +321,84 @@
     </main>
   </div>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+  (function () {
+    var SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    var SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+    if (SUPABASE_URL.startsWith('YOUR_')) return;
+
+    var sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function formatDate(iso) {
+      var d = new Date(iso);
+      return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0');
+    }
+
+    async function loadReviews() {
+      var list = document.getElementById('reviews-list');
+      var res = await sb
+        .from('reviews')
+        .select('id, name, coaching_type, content, created_at')
+        .eq('approved', true)
+        .order('created_at', { ascending: false });
+
+      if (res.error || !res.data || res.data.length === 0) {
+        list.innerHTML = '<p class="reviews-empty">아직 등록된 후기가 없습니다.</p>';
+        return;
+      }
+
+      list.innerHTML = res.data.map(function (r) {
+        return '<article class="review-card">'
+          + '<div class="review-meta">'
+          + '<span class="review-name">' + escHtml(r.name) + '</span>'
+          + '<span class="review-type">' + escHtml(r.coaching_type) + '</span>'
+          + '<span class="review-date">' + formatDate(r.created_at) + '</span>'
+          + '</div>'
+          + '<p class="review-content">' + escHtml(r.content) + '</p>'
+          + '</article>';
+      }).join('');
+    }
+
+    document.getElementById('review-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var name = document.getElementById('review-name').value.trim();
+      var coaching_type = document.getElementById('review-type').value;
+      var content = document.getElementById('review-content').value.trim();
+
+      if (!name || !coaching_type || !content) return;
+
+      var btn = document.getElementById('submit-btn');
+      var successEl = document.getElementById('form-success');
+      var errorEl = document.getElementById('form-error');
+      successEl.classList.add('hidden');
+      errorEl.classList.add('hidden');
+      btn.disabled = true;
+      btn.textContent = '제출 중...';
+
+      var res = await sb.from('reviews').insert({ name: name, coaching_type: coaching_type, content: content });
+
+      if (res.error) {
+        errorEl.classList.remove('hidden');
+        btn.disabled = false;
+        btn.textContent = '후기 남기기';
+      } else {
+        successEl.classList.remove('hidden');
+        e.target.reset();
+        btn.textContent = '후기 남기기';
+      }
+    });
+
+    loadReviews();
+  })();
+  </script>
 </body>
 </html>
