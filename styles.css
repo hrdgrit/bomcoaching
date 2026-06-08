@@ -540,6 +540,74 @@ h1 {
   font-size: 0.92rem;
 }
 
+/* ─── Clients ─── */
+
+.clients-section {
+  padding: 56px 40px;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.clients-intro {
+  margin: 0 0 36px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.clients-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.client-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 200px;
+  height: 100px;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  background: var(--surface-strong);
+}
+
+.client-item img {
+  max-width: 120px;
+  max-height: 44px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(1) opacity(0.7);
+  transition: filter 200ms;
+}
+
+.client-item:hover img {
+  filter: grayscale(0) opacity(1);
+}
+
+.client-item span {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.client-item--text {
+  justify-content: center;
+}
+
+.client-name-only {
+  font-size: 1.1rem !important;
+  font-weight: 700;
+  font-family: var(--serif);
+  color: var(--text) !important;
+  letter-spacing: -0.01em;
+}
+
 /* ─── Profile ─── */
 
 .profile-layout {
